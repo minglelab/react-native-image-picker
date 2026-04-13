@@ -64,6 +64,17 @@ RCT_EXPORT_METHOD(launchImageLibrary:(NSDictionary *)options callback:(RCTRespon
 }
 #endif
 
+- (void)invokeCallback:(NSArray *)response
+{
+    if (self.callback == nil) {
+        return;
+    }
+
+    RCTResponseSenderBlock callback = self.callback;
+    self.callback = nil;
+    callback(response);
+}
+
 - (void)launchImagePicker:(NSDictionary *)options callback:(RCTResponseSenderBlock)callback
 {
     self.callback = callback;
@@ -125,17 +136,6 @@ RCT_EXPORT_METHOD(launchImageLibrary:(NSDictionary *)options callback:(RCTRespon
         UIViewController *root = RCTPresentedViewController();
         [root presentViewController:picker animated:YES completion:nil];
     });
-}
-
-- (void)invokeCallback:(NSArray *)response
-{
-    if (self.callback == nil) {
-        return;
-    }
-
-    RCTResponseSenderBlock callback = self.callback;
-    self.callback = nil;
-    callback(response);
 }
 
 #pragma mark - Helpers
