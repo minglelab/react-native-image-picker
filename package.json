@@ -17,9 +17,9 @@
   "homepage": "https://github.com/react-native-image-picker/react-native-image-picker",
   "license": "MIT",
   "scripts": {
+    "build": "bob build",
     "start": "react-native start",
     "example": "yarn --cwd example",
-    "prepare": "bob build",
     "ci:publish": "yarn semantic-release"
   },
   "keywords": [
